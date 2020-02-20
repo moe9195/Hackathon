@@ -1,0 +1,45 @@
+{% load crispy_forms_tags %}
+
+{% load static %}
+<!doctype html>
+<html lang="en">
+<style type="text/css">
+   body {background: url('https://i.imgur.com/oml6mqw.jpg') center no-repeat !important; } /* Adding !important forces the browser to overwrite the default style applied by Bootstrap */
+</style>
+
+  <head>
+    <!-- <link href="styles.css" type="text/css" rel="stylesheet"> -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <title></title>
+  </head>
+  <body>
+
+      <div class="container h-100">
+        <div class="row align-items-center h-100">
+          <div class="mx-auto">
+            <div class="h-100  justify-content-center">
+              <div class=" justify-content-center">
+
+<div class="card">
+  <h5 class="card-header">Register</h5>
+  <div class="card-body">
+    <p class="card-text">
+        <form action="{% url 'register' %}" method="POST">
+            {% csrf_token %}
+            {{ form|crispy }}
+            <input type="submit" value="Register" class="btn btn-outline-primary">
+        </form>
+    </p>
+  </div>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+</div>
+
+</body>
