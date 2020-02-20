@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+{% load thumbnail %}
+{% block content %}
+
+{% if not request.user.is_anonymous and request.user == wishlist.owner  %}
+<br>
+<div class="form-row text-center">
+    <div class="col-12">
+        <a href="{% url 'item-create' wishlist.id %}" class="btn btn-secondary btn-lg border border-dark">Add item</a>
+    </div>
+</div>
+<br><br>
+{% endif %}
+
+<div class="row">
+    {% for item in items %}
+
+    <div class="col-md-4">
+        <div class="card bg-light mb-3 card border-secondary mb-3 rounded-10">
+            <div class="card-header bg-transparent border-secondary">
+             {% if not request.user.is_anonymous and request.user == wishlist.owner  %}
+                 <a href="{% url 'item-delete' wishlist.id item.id %}">
+                        <button type="button" class="close" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                  </button>
+              </a>
+              {% endif %}
+
+
+
+            <h5 class="card-title text-center">{{item.name}}</h5>
+            {% if item.url %}
+            <p class="card-text text-center"><a href={{item.url}} target="_blank">Buy Here</a></p>
+            {% endif %}
+          </div>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item text-center ">
+		        {% thumbnail item.image "300x300" as im %}
+		    	<img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}">
+				{% endthumbnail %}
+            </li>
+          </ul>
+          {% if item.checkbox %}
+          <a href="{% url 'item-buy' wishlist.id item.id %}" class="btn btn-secondary btn-lg border border-dark">Bought by {{item.boughtby}}</a>
+          {% else %}
+          <a href="{% url 'item-buy' wishlist.id item.id %}" class="btn btn-secondary btn-lg border border-dark">Select if bought</a>
+          {% endif %}
+        </div>
+
+    </div>
+    {% endfor %}
+</div>
+
+
+
+{% endblock content %}

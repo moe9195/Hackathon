@@ -37,7 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'wishlist',
+    'wish_list',
     'crispy_forms',
     'sorl.thumbnail',
 ]
